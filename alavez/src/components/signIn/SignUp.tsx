@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { auth } from "../../api/api/auth/auth";
-import { inputsState } from "../../interfaces/interfaces";
-import { Header } from "../index";
+import { inputsState } from "../../interfaces/login";
 import * as S from "./style";
 import { ConfirmModal } from "../index";
 
 const SignUp = () => {
   const [fileUrl, setFileUrl] = useState("");
   const [modal, setModal] = useState<boolean>(false);
-  const history = useHistory();
 
   //이미지 파일 선택시 미리보기
   function processImage(
@@ -55,23 +53,18 @@ const SignUp = () => {
     console.log(inputs);
   };
 
-  const confirmClickHandler = () => {
-    history.push("/sign-up/confirm");
-  };
-
-  const modalOpen = () => {
+  const openModal = () => {
     setModal(!modal);
   };
 
   return (
     <S.MainWrapper>
-      <ConfirmModal />
-      <Header></Header>
+      <ConfirmModal modal={modal} setModal={setModal} />
       <S.Main>
         <S.LoginWrapper onSubmit={handleSubmit}>
           <S.Title>
             <span>SIGN IN</span>
-            <Link to="/sign-up">로그인 &gt; </Link>
+            <Link to="/login">로그인 &gt; </Link>
           </S.Title>
           <div className="sign-wrapper">
             {/* 프로필 사진  */}
@@ -119,8 +112,7 @@ const SignUp = () => {
               />
             </div>
           </div>
-
-          <button type="submit" onClick={confirmClickHandler}>
+          <button type="submit" onClick={openModal}>
             인증하러 가기
           </button>
         </S.LoginWrapper>

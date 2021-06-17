@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const MainWrapper = styled.div`
-  margin-top: 50px;
   width: 100%;
   height: 100vh;
 `;
@@ -18,20 +17,14 @@ export const ProfileWrapper = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-`;
-
-export const ProfileImg = styled.div`
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
 
-  img {
+  .profile-img {
     cursor: pointer;
-    min-height: 200px;
-    min-width: 200px;
-    width: 150px;
-    height: 150px;
+    min-height: 230px;
+    min-width: 230px;
+    width: 240px;
+    height: 240px;
     border: 1px solid #80808073;
     border-radius: 100%;
     object-fit: cover;
@@ -43,41 +36,48 @@ export const ProfileImg = styled.div`
 `;
 
 export const ProfileIntro = styled.div`
-  padding-left: 30px;
   margin-top: 10px;
-  width: 80%;
+  width: 93%;
   display: flex;
   flex-direction: column;
+  padding: 5px;
+
+  .profile-name {
+    font-size: 24px;
+    line-height: 1.25;
+    margin-top: 10px;
+  }
 
   .profile-text {
-    margin: 10px;
-    padding-bottom: 3px;
+    margin-top: 10px;
+    padding-bottom: 7px;
     border-bottom: 2px solid #6f2dff;
     width: 100%;
+    color: #464444bd;
+  }
+
+  .profile-sub {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 20px;
+      margin-right: 10px;
+    }
   }
 `;
 
-export interface a {
-  font: string;
-}
-
 export const ProfileItem = styled.div`
   width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 
-  .profile-item {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-
-    .title {
-      display: flex;
-      flex-direction: row;
-    }
-  }
-
+  // 나의 그룹 리스트
   ul {
     width: 100%;
+    padding-left: 20px;
     max-height: 500px;
 
     & li {
@@ -85,10 +85,6 @@ export const ProfileItem = styled.div`
       cursor: pointer;
       padding: 3px;
     }
-  }
-
-  .group-list {
-    width: 100%;
   }
 
   img {
@@ -111,21 +107,38 @@ export const Group = styled.div`
   justify-content: space-between;
   border: 1px solid #80808047;
   border-radius: 5px;
-  box-shadow: 2px 1px 4px #8080802e;
+
+  :hover {
+    box-shadow: 0 1px 8px #6f2dff;
+    width: 104%;
+    transition: all 0.5s;
+  }
 `;
 
 export const GroupTitle = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: auto;
+  width: 100%;
+
+  .list-sub {
+    color: #464444bd;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  span:nth-child(1) {
+    cursor: pointer;
+  }
 `;
 
 export const ProfileChange = styled.div`
-  margin-top: 30px;
+  margin-top: 20px;
   margin-bottom: 30px;
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 100%;
 
   & button {
     margin: 10px;
