@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 export const MainWrapper = styled.div`
-  margin-top: 30px;
-  width: 50%;
+  width: 55%;
   height: 100%;
   margin: 0 auto;
 
@@ -27,7 +26,7 @@ export const MainWrapper = styled.div`
 `;
 
 export const Search = styled.div`
-  margin: 60px auto;
+  margin: 70px 0 20px 0;
   width: 100%;
   height: 50px;
   display: flex;
@@ -88,15 +87,6 @@ export const Category = styled.div`
   flex-direction: row;
   margin-bottom: 20px;
   flex-wrap: wrap;
-
-  & button {
-    cursor: pointer;
-    padding: 5px;
-    margin: 0 10px 10px 0;
-    outline: none;
-    border: none;
-    border-radius: 5px;
-  }
 `;
 
 export const GroupWrapper = styled.div`
@@ -146,7 +136,7 @@ export const GroupDescribe = styled.div`
 
   & a {
     text-decoration: none;
-    color : black;
+    color: black;
     font-weight: 500;
   }
 

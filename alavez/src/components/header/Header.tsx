@@ -1,18 +1,24 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { logo } from "../../assets";
+import { LinkListType } from "../../interfaces/interfaces";
 import * as S from "./style";
 
-/* interface linkListProps {
-  id: number;
-  to: string;
-  name: string;
-} */
-
-const linkList = [
+const linkList: LinkListType[] = [
   {
     id: 1,
     to: "/group-search",
-    name: "그룹찾기",
+    name: "스터디 그룹",
+  },
+  {
+    id: 2,
+    to: "/post",
+    name: "스터디 생성",
+  },
+  {
+    id: 3,
+    to: "/apply-list",
+    name: "신청 목록",
   },
   {
     id: 3,
@@ -37,7 +43,7 @@ const Header = () => {
     <>
       <S.HeaderWrapper>
         <div className="container">
-          <img src="#" alt="logo" />
+          <img src={logo} alt="logo" />
           <ul className="menu-list">
             {linkList.map((list, index) => (
               <li key={index}>

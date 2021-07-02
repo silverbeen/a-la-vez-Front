@@ -1,4 +1,3 @@
-import React from "react";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import {
   Header,
@@ -8,6 +7,8 @@ import {
   SignUp,
   GroupSearch,
   GroupDetail,
+  PostMake,
+  ApplyList,
 } from "../components/index";
 
 const Router = () => {
@@ -22,6 +23,8 @@ const Router = () => {
           <Route path="/my-page" component={MyPage} exact />
           <Route path="/group-search" component={GroupSearch} exact />
           <Route path="/group-detail/:id" component={GroupDetail} exact />
+          <Route path="/post" component={PostMake} exact />
+          <Route path="/apply-list" component={ApplyList} exact />
         </Switch>
       </BrowserRouter>
     </>
