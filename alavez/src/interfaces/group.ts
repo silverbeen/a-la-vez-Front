@@ -1,24 +1,28 @@
+import { groupImg2 } from "../assets";
+
 export interface ButtonType {
   id: number;
   name: string;
 }
 
 export interface ListDummyType {
+  Id: number;
   Title: string;
   describe: string;
   Period: string;
 }
 
 export interface GroupDetailType extends ListDummyType {
-  Id: number;
   ImagePath: string;
   Content: string;
   CreatedAt: string;
   UpdatedAt: string;
   Category: string;
+  Hire: boolean;
 }
 
 export interface CommentType {
+  id: number;
   ImagePath: string;
   Content: string;
   CreatedAt: string;
@@ -27,6 +31,12 @@ export interface CommentType {
 
 export interface CommentPropsState extends CommentType {
   comment: [];
+}
+
+// 그룹 props type
+export interface groupDetailProps {
+  setApply?: any;
+  groupDetail: any;
 }
 
 export const button: ButtonType[] = [
@@ -78,98 +88,71 @@ export const button: ButtonType[] = [
 
 export const listDummy: ListDummyType[] = [
   {
+    Id: 1,
     Title: "대덕마이스터고등학교 공부할 사람!!!",
     describe: "인원 6명",
     Period: "2020202",
   },
   {
+    Id: 2,
     Title: "대덕마이스터고등학교 공부할 사람!!!",
     describe: "인원 6명",
     Period: "2020202",
   },
   {
+    Id: 3,
     Title: "대덕마이스터고등학교 공부할 사람!!!",
     describe: "인원 6명",
     Period: "2020202",
   },
   {
+    Id: 4,
     Title: "대덕마이스터고등학교 공부할 사람!!!",
     describe: "인원 6명",
     Period: "2020202",
   },
   {
+    Id: 5,
     Title: "대덕마이스터고등학교 공부할 사람!!!",
     describe: "인원 6명",
     Period: "2020202",
   },
+];
+
+export const commentDummy: CommentType[] = [
   {
-    Title: "대덕마이스터고등학교 공부할 사람!!!",
-    describe: "인원 6명",
-    Period: "2020202",
+    id: 1,
+    ImagePath: groupImg2,
+    Content: "Sdfsdfsdf",
+    CreatedAt: "2020-20-20",
+    UserName: "은빈",
   },
   {
-    Title: "대덕마이스터고등학교 공부할 사람!!!",
-    describe: "인원 6명",
-    Period: "2020202",
+    id: 2,
+    ImagePath: groupImg2,
+    Content: "Sdfsdfsdf",
+    CreatedAt: "2020-20-20",
+    UserName: "은빈",
   },
   {
-    Title: "대덕마이스터고등학교 공부할 사람!!!",
-    describe: "인원 6명",
-    Period: "2020202",
+    id: 3,
+    ImagePath: groupImg2,
+    Content: "Sdfsdfsdf",
+    CreatedAt: "2020-20-20",
+    UserName: "은빈",
   },
   {
-    Title: "대덕마이스터고등학교 공부할 사람!!!",
-    describe: "인원 6명",
-    Period: "2020202",
+    id: 4,
+    ImagePath: groupImg2,
+    Content: "Sdfsdfsdf",
+    CreatedAt: "2020-20-20",
+    UserName: "은빈",
   },
   {
-    Title: "대덕마이스터고등학교 공부할 사람!!!",
-    describe: "인원 6명",
-    Period: "2020202",
-  },
-  {
-    Title: "대덕마이스터고등학교 공부할 사람!!!",
-    describe: "인원 6명",
-    Period: "2020202",
-  },
-  {
-    Title: "대덕마이스터고등학교 공부할 사람!!!",
-    describe: "인원 6명",
-    Period: "2020202",
-  },
-  {
-    Title: "대덕마이스터고등학교 공부할 사람!!!",
-    describe: "인원 6명",
-    Period: "2020202",
-  },
-  {
-    Title: "대덕마이스터고등학교 공부할 사람!!!",
-    describe: "인원 6명",
-    Period: "2020202",
-  },
-  {
-    Title: "대덕마이스터고등학교 공부할 사람!!!",
-    describe: "인원 6명",
-    Period: "2020202",
-  },
-  {
-    Title: "대덕마이스터고등학교 공부할 사람!!!",
-    describe: "인원 6명",
-    Period: "2020202",
-  },
-  {
-    Title: "대덕마이스터고등학교 공부할 사람!!!",
-    describe: "인원 6명",
-    Period: "2020202",
-  },
-  {
-    Title: "대덕마이스터고등학교 공부할 사람!!!",
-    describe: "인원 6명",
-    Period: "2020202",
-  },
-  {
-    Title: "대덕마이스터고등학교 공부할 사람!!!",
-    describe: "인원 6명",
-    Period: "2020202",
+    id: 5,
+    ImagePath: groupImg2,
+    Content: "Sdfsdfsdf",
+    CreatedAt: "2020-20-20",
+    UserName: "은빈",
   },
 ];

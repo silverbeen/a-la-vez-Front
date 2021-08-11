@@ -1,4 +1,6 @@
-export interface ApplyListType {
+import { ApplyAction } from "../action/actionType";
+
+interface applyType {
   id: number;
   groupName: string;
   name: string;
@@ -7,13 +9,7 @@ export interface ApplyListType {
   pass: boolean;
 }
 
-export interface StudyMemberListType extends ApplyListType {}
-
-export interface ListProps {
-  count: any;
-}
-
-export const studyMemberListDummy: StudyMemberListType[] = [
+const initialState: applyType[] = [
   {
     id: 1,
     groupName: "스터디인데용",
@@ -48,10 +44,23 @@ export const studyMemberListDummy: StudyMemberListType[] = [
   },
   {
     id: 5,
-    groupName: "스터디인데용",
+    groupName: "안녕시에",
     name: "강은빈",
     phone: "01044380803",
     reason: "열심히 하겠습니다!!",
     pass: true,
   },
 ];
+
+export type applyTypes = applyType[];
+
+const apply = (state: applyTypes = initialState, action: ApplyAction) => {
+  switch (action.type) {
+    case "REJECT_APPLY":
+      return state.filter((apply) => apply.id !== action.payload);
+    default:
+      return state;
+  }
+};
+
+export default apply;
