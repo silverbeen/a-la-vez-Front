@@ -3,7 +3,7 @@ export interface inputsState {
   email: string;
   password: string;
   re_password: string;
-  //file: string;
+  file?: string;
 }
 
 export interface inputComfirm {

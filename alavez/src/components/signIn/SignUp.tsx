@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import * as S from "./style";
 import { Link } from "react-router-dom";
 import { inputsState } from "../../interfaces/login";
-import { ConfirmModal } from "../index";
 import axios from "axios";
 import { useMutation } from "react-query";
 
 const SignUp = () => {
   const [fileUrl, setFileUrl] = useState("");
-  const [modal, setModal] = useState<boolean>(false);
   const [user, serUser] = useState<object>({});
 
   //이미지 파일 선택시 미리보기
@@ -26,13 +24,15 @@ const SignUp = () => {
     email: "",
     password: "",
     re_password: "",
-    //file: "",
+    file: "",
   });
 
-  const { nick, email, password, re_password } = inputs;
+  const { nick, email, password, re_password, file } = inputs;
 
   const onChange = (e: React.InputHTMLAttributes<HTMLInputElement> | any) => {
     const { value, name } = e.target;
+
+    console.log(value);
 
     setInputs({
       ...inputs,
@@ -41,7 +41,7 @@ const SignUp = () => {
   };
 
   const mutation = useMutation((inputs) =>
-    axios.post("http://192.168.137.38:3000/auth/join", inputs).then((res) => {
+    axios.post("https://qovh.herokuapp.com/auth/join", inputs).then((res) => {
       serUser(res.data);
     })
   );
@@ -57,19 +57,14 @@ const SignUp = () => {
       email: "",
       password: "",
       re_password: "",
-      //file: "",
+      file: "",
     });
 
     mutation.mutate(data);
   };
 
-  const openModal = () => {
-    setModal(!modal);
-  };
-
   return (
     <S.MainWrapper>
-      <ConfirmModal modal={modal} setModal={setModal} user={user} />
       <S.Main>
         <S.LoginWrapper onSubmit={(e) => handleSubmit(e, inputs)}>
           <S.Title>
@@ -83,10 +78,14 @@ const SignUp = () => {
               <input
                 type="file"
                 accept="image/*"
-                onChange={processImage}
+                onChange={(e) => {
+                  processImage(e);
+                  onChange(e);
+                  console.log(e.target.files);
+                }}
                 className="profile-item"
                 name="file"
-                //value={file}
+                value={file}
               ></input>
             </label>
 
@@ -122,9 +121,7 @@ const SignUp = () => {
               />
             </div>
           </div>
-          <button type="submit" onClick={openModal}>
-            인증하러 가기
-          </button>
+          <button type="submit">가입하기</button>
         </S.LoginWrapper>
       </S.Main>
     </S.MainWrapper>

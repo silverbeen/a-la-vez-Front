@@ -1,8 +1,10 @@
 import { useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
+import { useQuery } from "react-query";
 import * as S from "./style";
 import { glass, groupImg2 } from "../../../assets";
-import { button, listDummy } from "../../../interfaces/group";
+import { categoryList } from "../../../interfaces/group";
+import axios from "axios";
 
 const GroupSearch = () => {
   const [selected, setSelected] = useState<number>(1);
@@ -10,24 +12,18 @@ const GroupSearch = () => {
   const test = useRef<HTMLInputElement>(null);
   const history = useHistory();
 
+  const { isLoading, error, data } = useQuery("post", () =>
+    axios("https://qovh.herokuapp.com/post")
+  );
+
+  console.log(data?.data);
+
   const inputClick = () => {
     if (test.current?.focus) {
       test.current.focus();
       console.log(test);
       setInput(!input);
     }
-  };
-
-  const categoryClickHandler = (button: any) => {
-    setSelected(button.id);
-  };
-
-  const inputClickHandler = () => {
-    setInput(!input);
-  };
-
-  const groupDetailChange = (id: number) => {
-    history.push(`/group-detail/${id}`);
   };
 
   return (
@@ -58,38 +54,43 @@ const GroupSearch = () => {
           <p>다양한 그룹을 검색하실 수 있습니다.</p>
         </div>
         <S.Category>
-          {button.map((button, index) => (
+          {categoryList.map((category, index) => (
             <button
               className="default-button"
               key={index}
               style={{
                 backgroundColor:
-                  button.id === selected
+                  category.id === selected
                     ? "#6f2dff"
                     : "rgba(128, 128, 128, 0.16)",
-                color: button.id === selected ? "white" : "black",
+                color: category.id === selected ? "white" : "black",
               }}
-              onClick={() => categoryClickHandler(button)}
+              onClick={() => setSelected(category.id)}
             >
-              {button.name}
+              {category.name}
             </button>
           ))}
         </S.Category>
         <S.GroupWrapper>
-          {listDummy.map((list, index) => (
-            <S.GroupItem key={index}>
-              <div className="group-img">
-                <img src={groupImg2} alt="그룹 베너 사진"></img>
-              </div>
-              <S.GroupDescribe>
-                <div onClick={() => groupDetailChange(list.Id)}>
-                  {list.Title}
-                </div>
-                <span>{list.describe}</span>
-                <span>{list.Period}</span>
-              </S.GroupDescribe>
-            </S.GroupItem>
-          ))}
+          {error && <>데이터를 불러올 수 없어요.. ㅠ</>}
+          {isLoading ? (
+            <>잠시만 기달려주세요!!</>
+          ) : (
+            <>
+              {data?.data?.items.map((post: any) => (
+                <S.GroupItem href={`/group-detail/${post.id}`} key={post.id}>
+                  <div className="group-img">
+                    <img src={groupImg2} alt="그룹 베너 사진"></img>
+                  </div>
+                  <S.GroupDescribe>
+                    <p>{post.title}</p>
+                    <span>모집 인원 {post.personnel}명</span>
+                    <span>모집 기간 {post.period}</span>
+                  </S.GroupDescribe>
+                </S.GroupItem>
+              ))}
+            </>
+          )}
         </S.GroupWrapper>
       </S.MainWrapper>
     </>

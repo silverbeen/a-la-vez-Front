@@ -71,9 +71,9 @@ export const Post = styled.div`
   & button {
     cursor: pointer;
     color: white;
-    width: 80px;
-    padding: 5px;
-    border-radius: 3px;
+    width: 100px;
+    padding: 8px;
+    border-radius: 5px;
     background-color: #6f2dff;
     border: none;
     outline: none;
@@ -97,7 +97,7 @@ export const GroupWrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-export const GroupItem = styled.div`
+export const GroupItem = styled.a`
   width: 23%;
   padding: 1%;
   height: 300px;
@@ -106,7 +106,8 @@ export const GroupItem = styled.div`
   display: flex;
   flex-direction: column;
   cursor: pointer;
-
+  text-decoration: none;
+  color: black;
   .group-img {
     overflow: hidden;
   }
@@ -131,6 +132,10 @@ export const GroupDescribe = styled.div`
   flex-direction: column;
   justify-content: space-between;
 
+  & p{
+    height: 80px;
+  }
+  
   & a {
     text-decoration: none;
     color: black;
